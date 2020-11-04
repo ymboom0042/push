@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ymboom0042\\JPush\\": "src/"
+            "JPush\\": "src/JPush/"
         }
     }
 }
