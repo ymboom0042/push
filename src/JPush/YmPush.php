@@ -9,7 +9,6 @@ class YmPush
         $this -> conf = $conf;
     }
 
-
     /**
      * 极光推送 安卓ios数据分离
      * @param array $push_id 推送用户push_id [1,2,3]
