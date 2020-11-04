@@ -1,0 +1,18 @@
+{
+    "name": "ymboom0042/jpush",
+    "description": "Third party message push",
+    "authors": [
+        {
+            "name": "ymboom0042"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ymboom0042\\JPush\\": "src/"
+        }
+    }
+}
