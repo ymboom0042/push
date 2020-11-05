@@ -41,6 +41,7 @@ class YmPush
 
             return $this -> JPush($push_id, $ios, $android,$platform);
         }
+        return false;
     }
 
 
