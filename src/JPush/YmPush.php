@@ -15,30 +15,29 @@ class YmPush
 
 
     /**
-     * 极光推送 --数据
+     * 极光推送 安卓ios数据分离
      * @param array $content 推送内容
-     * @return array
+     * @param array $extras 可选参数
+     * @param string $platform 推送平台
+     * @return bool
      */
     private function pushData(array $content): array
     {
         if (!empty($content)) {
+
             $ios = [
                 "alert" => [
                     "body" => $content["msg"],
                     "title" => $content["title"],
                 ],
-                "extras" => [
-                    "sign" => "sign",
-                ],
+                "extras" => $content["extras"],
                 "sound" => "default",
             ];
 
             $android = [
                 "alert" => $content["msg"],
                 "data" => [
-                    "extras" => [
-                        "sign" => "sign"
-                    ],
+                    "extras" => $content["extras"],
                 ],
             ];
 
@@ -49,9 +48,9 @@ class YmPush
 
 
     /**
-     * 极光推送 --指定用户
+     * 极光推送
      * @param array $push_id
-     * @param array $content
+     * @param array $extras
      * @param string $platform
      * @return bool
      */
@@ -71,7 +70,6 @@ class YmPush
                 ->androidNotification($android['alert'], $android['data'])
                 ->iosNotification($ios['alert'], $ios)
                 ->addRegistrationId($push_id)
-                ->setOptions()
                 ->message($message)
                 ->send();
 
@@ -90,6 +88,7 @@ class YmPush
      * 极光推送 -- 广播
      * @param array $content
      * @param string $platform
+     * @param array $options
      * @return bool
      */
     function pushAll(array $content, string $platform = 'all'): bool
@@ -103,10 +102,10 @@ class YmPush
                 ->setAudience('all')
                 ->androidNotification($android['alert'], $android['data'])
                 ->iosNotification($ios['alert'], $ios)
-                ->setOptions()
                 ->message($message)
                 ->send();
 
+            var_dump($response);
             if (!empty($response)) {
                 $http_code = $response["http_code"] ?? false;
                 if ($http_code == 200) {
@@ -114,6 +113,9 @@ class YmPush
                 }
             }
         }
+
         return false;
     }
+
+
 }
