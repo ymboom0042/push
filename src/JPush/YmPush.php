@@ -105,7 +105,6 @@ class YmPush
                 ->message($message)
                 ->send();
 
-            var_dump($response);
             if (!empty($response)) {
                 $http_code = $response["http_code"] ?? false;
                 if ($http_code == 200) {

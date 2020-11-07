@@ -24,7 +24,7 @@ final class Http {
     }
 
     private static function sendRequest($client, $url, $method, $body=null, $times=1) {
-        self::log($client, "Send " . $method . " " . $url . ", body:" . json_encode($body) . ", times:" . $times);
+        //self::log($client, "Send " . $method . " " . $url . ", body:" . json_encode($body) . ", times:" . $times);
         if (!defined('CURL_HTTP_VERSION_2_0')) {
             define('CURL_HTTP_VERSION_2_0', 3);
         }
